@@ -15,6 +15,11 @@ class Main {
           OP1();
           break;
         }
+        case 2:{
+          System.out.println();
+          OP2();
+          break;
+        }
         case 0:{
           return;
         }
@@ -31,6 +36,7 @@ class Main {
     System.out.println();
     System.out.println("Menu: ");
     System.out.println("1. Dodaj studenta");
+    System.out.println("2. Wypisz listę studentów");
     System.out.println("0. Wyjście z programu");
     System.out.print("Wybierz opcję: ");
     
@@ -55,5 +61,17 @@ class Main {
 
     }
   }
-  
+
+  public static void OP2(){
+    try {
+      Service1 s = new Service1();
+      var students = s.getStudents();
+      for(Student current : students) {
+        System.out.println(current.ToString());
+      }
+    } catch (IOException e) {
+
+    }
+  }
+      
 }
