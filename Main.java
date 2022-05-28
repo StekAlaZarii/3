@@ -3,7 +3,8 @@ import java.util.Scanner;
 
 class Main {
     public static Scanner skaner = new Scanner(System.in);
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws IOException {
 
         while (true) {
             int opcja = 0;
@@ -22,11 +23,7 @@ class Main {
                 }
                 case 3: {
                     System.out.println();
-                    try{
-                        OP3();
-                    }catch (IOException e){
-
-                    }
+                    OP3();
                     break;
                 }
                 case 0: {
@@ -53,60 +50,50 @@ class Main {
         return numer;
     }
 
-    public static void OP1() {
-        try {
-            Service1 s = new Service1();
-            int wiek;
-            String imie;
-            String nazwisko;
-            String data;
+    public static void OP1() throws IOException {
 
-            skaner.nextLine();
-            System.out.print("Podaj imie: ");
-            imie = skaner.nextLine();
-            System.out.print("Podaj nazwisko: ");
-            nazwisko = skaner.nextLine();
-            System.out.print("Podaj datę urodzenia DD-MM-YYYY: ");
-            data = skaner.nextLine();
-            System.out.print("Podaj wiek: ");
-            wiek = skaner.nextInt();
+        Service1 s = new Service1();
+        int wiek;
+        String imie;
+        String nazwisko;
+        String data;
 
-            s.addStudent(new Student(imie, nazwisko, data, wiek));
-            System.out.println("Dodano nowego studenta");
+        skaner.nextLine();
+        System.out.print("Podaj imie: ");
+        imie = skaner.nextLine();
+        System.out.print("Podaj nazwisko: ");
+        nazwisko = skaner.nextLine();
+        System.out.print("Podaj datę urodzenia DD-MM-YYYY: ");
+        data = skaner.nextLine();
+        System.out.print("Podaj wiek: ");
+        wiek = skaner.nextInt();
 
-        } catch (IOException e) {
+        s.addStudent(new Student(imie, nazwisko, data, wiek));
+        System.out.println("Dodano nowego studenta");
 
-        }
     }
 
-    public static void OP2() {
-        try {
-            Service1 s = new Service1();
-            var students = s.getStudents();
-            for (Student current : students) {
-                System.out.println(current.ToString());
-            }
-        } catch (IOException e) {
+    public static void OP2() throws IOException {
 
+        Service1 s = new Service1();
+        var students = s.getStudents();
+        for (Student current : students) {
+            System.out.println(current.ToString());
         }
+
     }
 
     public static void OP3() throws IOException {
-
-        try {
-            String imie;
-            skaner.nextLine();
-            System.out.print("Podaj imię: ");
-            imie = skaner.nextLine();
-            var student = (new Service1()).findStudentByName(imie);
-            if (student == null) {
-                System.out.println("Nie znaleziono");
-            } else {
-                System.out.print("Wynik: ");
-                System.out.println(student.ToString());
-            }
-        } catch (IOException e) {
-
+        String imie;
+        skaner.nextLine();
+        System.out.print("Podaj imię: ");
+        imie = skaner.nextLine();
+        var student = (new Service1()).findStudentByName(imie);
+        if (student == null) {
+            System.out.println("Nie znaleziono");
+        } else {
+            System.out.print("Wynik: ");
+            System.out.println(student.ToString());
         }
     }
 
